@@ -17,7 +17,7 @@ class SalarieAideADomicileRepositoryTest {
     private SalarieAideADomicileRepository salarieAideADomicileRepository;
 
     @Test
-    void partCongesPrisTotauxAnneeNMoins1Ok() {
+    void partCongesPrisTotauxAnneeNMoins1Ok(){
         //GIVEN
         SalarieAideADomicile salarieAideADomicile = new SalarieAideADomicile();
         salarieAideADomicile.setCongesPayesPrisAnneeNMoins1(15.5);

@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EntrepriseTest {
+    //region est dans plage
     @ParameterizedTest(name = "date{0} est dans [debut{1} fin{2}]")
     @CsvSource
             ({
@@ -38,8 +39,8 @@ class EntrepriseTest {
         //THEN
         assertEquals(false , res);
     }
-
-
+    //endregion
+    //region estJourFerrié
     @Test
     void estJourFerieFalse() {
         LocalDate date = LocalDate.parse("2022-05-28");//Samedi
@@ -56,7 +57,6 @@ class EntrepriseTest {
         LocalDate date = LocalDate.parse("2020-02-29");//Vendredi
         assertEquals(false , Entreprise.estJourFerie(date));
     }
-
     @Test
     void getPremierJourAnneeDeCongesNULL() {
         assertEquals(null,Entreprise.getPremierJourAnneeDeConges(null));
@@ -66,4 +66,27 @@ class EntrepriseTest {
     LocalDate date = LocalDate.parse("2022-06-28");//Vendredi
         assertEquals(2021,Entreprise.getPremierJourAnneeDeConges(date).getYear());
     }
+    //endregion
+    //region proportionPondereeDuMois
+    @ParameterizedTest(name = "date{0} est dans [debut{1} fin{2}]")
+    @CsvSource
+            ({
+                    "'2022-01-01'",
+                    "'2022-02-01'",
+                    "'2022-03-01'",
+                    "'2022-04-01'",
+                    "'2022-05-01'",
+                    "'2022-06-01'",
+                    "'2022-07-01'",
+                    "'2022-08-01'",
+                    "'2022-09-01'",
+                    "'2022-10-01'",
+                    "'2022-11-01'",
+                    "'2022-12-01'",
+            })
+    void TESTproportionPondereeDuMois01(){
+        double result = Entreprise.proportionPondereeDuMois(LocalDate.parse("2020-02-29"));
+        assertTrue((result >= 0 || result <= 1));
+    }
+    //endregion
 }

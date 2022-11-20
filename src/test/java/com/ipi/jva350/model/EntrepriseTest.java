@@ -1,5 +1,6 @@
 package com.ipi.jva350.model;
 
+import com.google.type.DateTime;
 import com.ipi.jva350.exception.NotImplementedException;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -67,8 +68,10 @@ class EntrepriseTest {
         assertEquals(2021,Entreprise.getPremierJourAnneeDeConges(date).getYear());
     }
     //endregion
-    //region proportionPondereeDuMois
-    @ParameterizedTest(name = "date{0} est dans [debut{1} fin{2}]")
+
+    //proportionPondereeDuMois
+    @ParameterizedTest(name = "date{0}")
+
     @CsvSource
             ({
                     "'2022-01-01'",
@@ -84,8 +87,8 @@ class EntrepriseTest {
                     "'2022-11-01'",
                     "'2022-12-01'",
             })
-    void TESTproportionPondereeDuMois01(){
-        double result = Entreprise.proportionPondereeDuMois(LocalDate.parse("2020-02-29"));
+    void TESTproportionPondereeDuMois01(LocalDate date){
+        double result = Entreprise.proportionPondereeDuMois(date);
         assertTrue((result >= 0 || result <= 1));
     }
     //endregion
